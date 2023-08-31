@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using NLayer.Core.Repositories;
+using NLayer.Core.UnitOfWorks;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NLayer.Core.Services
 {
-    public interface IService
+    public interface IService<T> where T : class
     {
         Task<T> GetByIdAsync(int id);
 
@@ -17,9 +14,9 @@ namespace NLayer.Core.Services
 
         Task<bool> AnyAsyc(Expression<Func<T, bool>> expression);
 
-        Task AddAsyc(T entity);
+        Task<T> AddAsyc(T entity);
 
-        Task AddRangeAsyc(IEnumerable<T> entities);
+        Task<IEnumerable<T>> AddRangeAsyc(IEnumerable<T> entities);
 
         Task UpdateAsync(T entity);
 
