@@ -1,6 +1,4 @@
-﻿using NLayer.Core.Repositories;
-using NLayer.Core.UnitOfWorks;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 
 namespace NLayer.Core.Services
 {
