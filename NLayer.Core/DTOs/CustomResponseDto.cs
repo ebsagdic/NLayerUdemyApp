@@ -35,5 +35,15 @@ namespace NLayer.Core.DTOs
         {
             return new CustomResponseDto<T> { StatusCode = statusCode, Errors = new List<string> { error } };
         }
+
+        public static CustomResponseDto<List<ProductDto>> Success(int v, ProductDto productsDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static CustomResponseDto<T> Success(int v, List<ProductDto> productsDto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using NLayer.Core.DTOs;
+using System.Linq.Expressions;
 
 namespace NLayer.Core.Services
 {
@@ -21,5 +22,7 @@ namespace NLayer.Core.Services
         Task RemoveAsync(T entity);
 
         Task RemoveRangeAsync(IEnumerable<T> entities);
+        Task GetByIdAsync();
+        Task AddAsyc(ProductDto productDto);
     }
 }
