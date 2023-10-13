@@ -15,13 +15,12 @@ namespace NLayer.Core.DTOs
         [JsonIgnore]
         public int StatusCode { get; set; }
 
-        public List<string> Errors { get; set; }
+        public List<String> Errors { get; set; }
 
 
-        public static CustomResponseDto<T> Success(T data,int statusCode)
+        public static CustomResponseDto<T> Success(int statusCode, T data)
         {
-            return new CustomResponseDto<T> {Data = data, StatusCode = statusCode};
-            //neden new? Çünkü her çağrıldığında yeni bir örnek (instance) oluşturulması gerekmesidir. 
+            return new CustomResponseDto<T> { Data = data, StatusCode = statusCode };
         }
         public static CustomResponseDto<T> Success( int statusCode)
         {
@@ -36,14 +35,5 @@ namespace NLayer.Core.DTOs
             return new CustomResponseDto<T> { StatusCode = statusCode, Errors = new List<string> { error } };
         }
 
-        public static CustomResponseDto<List<ProductDto>> Success(int v, ProductDto productsDto)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static CustomResponseDto<T> Success(int v, List<ProductDto> productsDto)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

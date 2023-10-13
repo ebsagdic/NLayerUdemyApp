@@ -35,14 +35,14 @@ namespace NLayer.API.Controllers
             var product = await _service.GetByIdAsync(id);
             //bu product entity olduğu için dto dönmeliyiz
             var productsDto = _mapper.Map<ProductDto>(product);
-            return CreateActionResult(CustomResponseDto<List<ProductDto>>.Success(200, productsDto));
+            return CreateActionResult(CustomResponseDto<ProductDto>.Success(200, productsDto));
         }
         [HttpPost]
         public async Task<IActionResult> Save(ProductDto productDto)
         {
             var product = await _service.AddAsyc(_mapper.Map<Product>(productDto));
             //bu product entity olduğu için dto dönmeliyiz
-            var productsDto = _mapper.Map<List<ProductDto>>(product);
+            var productsDto = _mapper.Map<ProductDto>(product);
             return CreateActionResult(CustomResponseDto<ProductDto>.Success(201, productsDto));
         }
         [HttpPut]

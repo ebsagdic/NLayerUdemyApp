@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NLayer.Core.DTOs;
 using NLayer.Core.Repositories;
 using NLayer.Core.Services;
 using NLayer.Core.UnitOfWorks;
@@ -24,6 +25,11 @@ namespace NLayer.Service.Service
             return entity;
         }
 
+        public Task AddAsyc(ProductDto productDto)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<T>> AddRangeAsyc(IEnumerable<T> entities)
         {
             await _repository.AddRangeAsyc(entities);
@@ -43,7 +49,13 @@ namespace NLayer.Service.Service
 
         public async Task<T> GetByIdAsync(int id)
         {
-            return await _repository.GetByIdAsync(id);
+            var hasProduct = await _repository.GetByIdAsync(id);
+
+            if (hasProduct == null)
+            {
+                throw new NotFoundExcepiton($"{typeof(T).Name}({id}) not found");
+            }
+            return hasProduct;
         }
 
         public async Task RemoveAsync(T entity)
@@ -67,6 +79,11 @@ namespace NLayer.Service.Service
         public IQueryable<T> Where(Expression<Func<T, bool>> expression)
         {
             return _repository.Where(expression);   
+        }
+
+        Task IService<T>.GetByIdAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }
